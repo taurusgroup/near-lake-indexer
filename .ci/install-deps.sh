@@ -1,7 +1,8 @@
 #!/bin/bash
 
-apt-get update && apt-get install -y --no-install-recommends \
+apt-get update && apt-get install -y \
     openssl libssl-dev \
+    perl perl-modules libperl-dev build-essential \
     openssh-client \
     curl ca-certificates apt-transport-https \
     && rm -rf /var/lib/apt/lists/*
@@ -26,7 +27,7 @@ install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key -o /etc/apt/keyrings/llvm.asc
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/llvm.asc] https://apt.llvm.org/${CODENAME}/ llvm-toolchain-${CODENAME}-$CLANG_VERSION main" | tee /etc/apt/sources.list.d/llvm-toolchain.list > /dev/null
 apt-get -y update \
-  && apt-get install --no-install-recommends -y clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} libclang-${CLANG_VERSION}-dev make m4 golang-go \
+  && apt-get install -y clang-${CLANG_VERSION} lldb-${CLANG_VERSION} lld-${CLANG_VERSION} libclang-${CLANG_VERSION}-dev make m4 golang-go \
   && rm -rf /var/lib/apt/lists/*
 update-alternatives --install /usr/bin/cc cc /usr/bin/clang-${CLANG_VERSION} 100
 update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang-${CLANG_VERSION} 100
