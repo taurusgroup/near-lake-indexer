@@ -28,10 +28,14 @@ jobs:
           rustup component add rustfmt clippy
 
       - name: Check code formatting
-        run: cargo fmt --all -- --check
+        run: |
+          source $HOME/.cargo/env
+          cargo fmt --all -- --check
 
       - name: Lint with clippy
-        run: cargo clippy -- -D warnings
+        run: |
+          source $HOME/.cargo/env
+          cargo clippy -- -D warnings
 
   cargo-check:
     name: Cargo Check
@@ -55,4 +59,6 @@ jobs:
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Cargo Check
-        run: cargo check --all
+        run: |
+          source $HOME/.cargo/env
+          cargo check --all
