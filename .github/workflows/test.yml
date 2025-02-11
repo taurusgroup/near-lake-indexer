@@ -12,7 +12,7 @@ env:
 jobs:
   check-format-and-lint:
     name: Check & Lint
-    runs-on: ubuntu-22.04-8core
+    runs-on: selfhosted-heavy
     steps:
       - uses: actions/checkout@v2
 
@@ -30,7 +30,7 @@ jobs:
 
   cargo-check:
     name: Cargo Check
-    runs-on: ubuntu-22.04-8core
+    runs-on: selfhosted-heavy
     steps:
       - uses: actions/checkout@v2
 
