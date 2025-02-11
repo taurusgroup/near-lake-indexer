@@ -35,7 +35,9 @@ fn main() {
     dotenv::dotenv().ok();
     // We use it to automatically search the for root certificates to perform HTTPS calls
     // (sending telemetry and downloading genesis)
-    openssl_probe::init_ssl_cert_env_vars();
+    unsafe {
+        openssl_probe::try_init_openssl_env_vars();
+    };
     init_tracing();
 
     let opts: Opts = Opts::parse();
@@ -115,7 +117,6 @@ fn main() {
             config.download_config_url.as_ref().map(AsRef::as_ref),
             config.boot_nodes.as_ref().map(AsRef::as_ref),
             config.max_gas_burnt_view,
-            None,
         )
         .expect("Failed to initialize the node config files"),
     }

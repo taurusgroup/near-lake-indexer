@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.5.0-rc.1
+* chore: bump nearcore to 2.5.0-rc.1
+
 ## 2.4.1
 
 * Switch to the Indexer Framework 2.4.0 but with the fix for shard id. See [issue#118](https://github.com/near/near-lake-indexer/issues/118)
