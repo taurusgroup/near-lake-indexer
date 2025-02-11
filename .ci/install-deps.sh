@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apt-get update && apt-get install -y --no-install-recommends \
+    openssl libssl-dev \
     openssh-client \
     curl ca-certificates apt-transport-https \
     && rm -rf /var/lib/apt/lists/*
