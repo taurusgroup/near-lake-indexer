@@ -1,5 +1,8 @@
 # Changelog
 
+# 2.5.2
+* chore: bump nearcore to 2.5.2
+
 # 2.5.1
 * chore: bump nearcore to 2.5.1
 * chore: bump Rust toolchain to 1.85.0
