@@ -1,2 +1,5 @@
 [env]
-NEARCORE_VERSION = "2.5.1-710f763"
+NEARCORE_VERSION = "2.5.2-f5d3027"
+
+[net]
+git-fetch-with-cli = true

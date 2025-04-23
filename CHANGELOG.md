@@ -1,5 +1,26 @@
 # Changelog
 
+# 2.5.2
+* chore: bump nearcore to 2.5.2
+
+# 2.5.1
+* chore: bump nearcore to 2.5.1
+* chore: bump Rust toolchain to 1.85.0
+* Use Rust edition 2024
+* fix: Pin the `tempfile` crate to version 3.14 due to [issue 12944](https://github.com/near/nearcore/issues/12944#issuecomment-2707438357)
+
+## 2.5.0-rc.3
+* chore: bump nearcore to 2.5.0-rc.3
+
+## 2.5.0-1a5c1c8f9a9901da8a95e1d896a9e777aff0b0eb
+* chore: bump nearcore to 2.5.0-1a5c1c8f9a9901da8a95e1d896a9e777aff0b0eb
+
+## 2.5.0-rc.2
+* chore: bump nearcore to 2.5.0-rc.2
+
+## 2.5.0-rc.1
+* chore: bump nearcore to 2.5.0-rc.1
+
 ## 2.4.1
 
 * Switch to the Indexer Framework 2.4.0 but with the fix for shard id. See [issue#118](https://github.com/near/near-lake-indexer/issues/118)
