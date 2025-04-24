@@ -1,5 +1,4 @@
-use clap::Parser;
-use near_indexer_primitives::types::{Finality};
+use clap::{Parser, ValueEnum};
 
 /// NEAR Lake
 /// Watches for stream of blocks from the chain and puts it in S3 bucket
@@ -9,6 +8,7 @@ use near_indexer_primitives::types::{Finality};
     author,
     about,
     disable_help_subcommand(true),
+    disable_help_flag(true),
     propagate_version(true),
     next_line_help(true)
 )]
@@ -54,6 +54,9 @@ pub(crate) struct RunArgs {
     /// Sets the starting point for indexing
     #[clap(subcommand)]
     pub sync_mode: SyncModeSubCommand,
+    /// Sets the different types of finality
+    #[clap(long, value_enum, default_value_t = FinalityArg::Final)]
+    pub finality: FinalityArg,
 }
 
 impl RunArgs {
@@ -69,7 +72,7 @@ impl RunArgs {
             } else {
                 near_indexer::AwaitForNodeSyncedEnum::WaitForFullSync
             },
-            finality: Finality::Final,
+            finality: self.finality.clone().into(),
             validate_genesis: self.validate_genesis,
         }
     }
@@ -84,6 +87,25 @@ pub(crate) enum SyncModeSubCommand {
     SyncFromLatest,
     /// start from specified block height
     SyncFromBlock(BlockArgs),
+}
+
+/// Different types of finality.
+#[derive(Debug, ValueEnum, Clone)]
+#[clap(rename_all = "snake_case")]
+pub enum FinalityArg {
+    Optimistic,
+    NearFinal,
+    Final,
+}
+
+impl From<FinalityArg> for near_indexer::near_primitives::types::Finality {
+    fn from(value: FinalityArg) -> Self {
+        match value {
+            FinalityArg::Optimistic => near_indexer::near_primitives::types::Finality::None,
+            FinalityArg::NearFinal => near_indexer::near_primitives::types::Finality::DoomSlug,
+            FinalityArg::Final => near_indexer::near_primitives::types::Finality::Final,
+        }
+    }
 }
 
 #[derive(Parser, Debug, Clone)]
