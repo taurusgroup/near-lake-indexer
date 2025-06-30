@@ -511,14 +511,14 @@ jobs:
           if [[ "$mark_as_latest" == "true" ]]; then
             # Create regular release and mark as latest
             gh release create "$version" \
-              --title "Release $version" \
+              --title "$version" \
               --notes "Automated release for version $version" \
               --latest
             echo "Created release $version and marked as latest"
           else
             # Create regular release without marking as latest
             gh release create "$version" \
-              --title "Release $version" \
+              --title "$version" \
               --notes "Automated release for version $version" \
               --latest=false
             echo "Created release $version without marking as latest"
