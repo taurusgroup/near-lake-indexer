@@ -71,3 +71,4 @@ jobs:
         env:
           RUST_LOG: info
         run: cargo t --release
+
